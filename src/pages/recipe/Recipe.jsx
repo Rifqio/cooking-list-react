@@ -9,6 +9,7 @@ import {
   Badge,
   ListItem,
   UnorderedList,
+  Button
 } from "@chakra-ui/react";
 import "./Recipe.css";
 
@@ -23,7 +24,7 @@ function Recipe() {
   useEffect(() => {
     setIsPending(true)
 
-    projectStorage.collection('recipes').doc(id).get().then((doc) => {
+    const unsub = projectStorage.collection('recipes').doc(id).onSnapshot((doc) => {
       if(doc.exists){
         setIsPending(false)
         setRecipe(doc.data())
@@ -31,7 +32,9 @@ function Recipe() {
         setIsPending(false)
         setError('Could not find the recipe')
       }
-    })    
+    })
+    
+    return () => unsub()
   }, [id])
   
 

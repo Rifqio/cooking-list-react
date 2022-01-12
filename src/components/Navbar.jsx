@@ -11,9 +11,8 @@ export default function Navbar() {
         <Link to="/" className="brand">
           <h1 className="text-3xl font-semibold">Cooking Session</h1>
         </Link>
-        <SearchBar />
         <Link to="/create"> <Button colorScheme='facebook' >Create Recipe</Button></Link>
-      </nav>
+      </nav> 
     </div>
   )
 }
